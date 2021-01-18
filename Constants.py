@@ -22,14 +22,14 @@ FRAMERATE = 0 # Might be put in with the camera section.
 
 # ------------- DIMENSIONS -------------
 #  dimensions units
-FACE_WIDTH = 0
-FACE_LENGTH = 0
-GOAL_CENTER = 0
-GOAL_SIZE = 0
+FACE_WIDTH = 0 # 5ft 4 inches
+FACE_LENGTH = 0 # 32 1/2 inches
+GOAL_CENTER = 0 #goal to edge is 12 inches
+GOAL_SIZE = 0 #goal diamter is 8 inches
 
 # Objects sizes units
-PUCK_RADIUS = 0
-PADDLE_RADIUS = 0
+PUCK_RADIUS = 0 # 2inches maybe?
+PADDLE_RADIUS = 0 # 3 inches maybe?
 
 # -------------- MOTORS --------------
 #  limitations
