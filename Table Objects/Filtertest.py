@@ -24,7 +24,7 @@ from filterpy.common import Q_discrete_white_noise
 
 class Filter(KalmanFilter):
     def __init__(self,timestep=1/30,uncertainty=1000,noise=1):
-        super().__init__(dim_x= 4 , dim_z = 2)
+        super().__init__(dim_x= 4 , dim_z = 1)
 
         self.x =  np.array([[0],
                          [0],

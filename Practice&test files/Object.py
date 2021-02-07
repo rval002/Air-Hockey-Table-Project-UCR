@@ -125,7 +125,7 @@ while True:
 
         Kf.predict()
 
-        z =np.array(puck.center) 
+        z =np.array(puck.centery)
 
         Kf.update(z)
 
@@ -135,7 +135,7 @@ while True:
         ppos = Kf.x
 
 
-        trajectory = get_trajectory(puck.center, ppos[0:1])
+        trajectory = get_trajectory(puck.centery, ppos[0])
             #puckt.move(puck.centerx, puck.centery)
             #while not puckt.colliderect(border[0]) or not puckt.colliderect(border[1]) or not puckt.colliderect(border[2]) or not puckt.colliderect(border[3]):
                 #puckt.x += trajectory[0]
@@ -162,7 +162,7 @@ while True:
 
         #updates
         pygame.display.flip()
-        clock.tick(120)
+        clock.tick(30)
 
 
 
