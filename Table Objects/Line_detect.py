@@ -22,6 +22,7 @@
 #
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see .
+
 from __future__ import division
 from pygame import Rect
 
@@ -100,34 +101,32 @@ def getIntersectPoint(p1, p2, p3, p4):
 # rectangles then the lines intersect. Returns intersect point if the line
 # intesect o None if not
 def calculateIntersectPoint(p1, p2, p3, p4):
+    p = getIntersectPoint(p1, p2, p3, p4)
+    if p is not None:
+        width = p2[0] - p1[0]
+        height = p2[1] - p1[1]
+        r1 = Rect(p1, (width , height))
+        r1.normalize()
 
-   p = getIntersectPoint(p1, p2, p3, p4)
+        width = p4[0] - p3[0]
+        height = p4[1] - p3[1]
+        r2 = Rect(p3, (width, height))
+        r2.normalize()
 
-   if p is not None:
-       width = p2[0] - p1[0]
-       height = p2[1] - p1[1]
-       r1 = Rect(p1, (width , height))
-       r1.normalize()
 
-       width = p4[0] - p3[0]
-       height = p4[1] - p3[1]
-       r2 = Rect(p3, (width, height))
-       r2.normalize()
 
-       # Ensure both rects have a width and height of at least 'tolerance' else the
-       # collidepoint check of the Rect class will fail as it doesn't include the bottom
-       # and right hand side 'pixels' of the rectangle
-       tolerance = 1
-        if r1.width &lt; tolerance:
+
+        tolerance = 1
+        if r1.width &lt: tolerance:
             r1.width = tolerance
 
-        if r1.height &lt; tolerance:
+        if r1.height &lt: tolerance:
             r1.height = tolerance
 
-        if r2.width &lt; tolerance:
+        if r2.width &lt: tolerance:
             r2.width = tolerance
 
-        if r2.height &lt; tolerance:
+        if r2.height &lt: tolerance:
             r2.height = tolerance
 
         for point in p:
@@ -148,3 +147,40 @@ def calculateIntersectPoint(p1, p2, p3, p4):
 
     else:
         return None
+
+
+# Test script below...
+if __name__ == "__main__":
+
+    # line 1 and 2 cross, 1 and 3 don't but would if extended, 2 and 3 are parallel
+    # line 5 is horizontal, line 4 is vertical
+    p1 = (1,5)
+    p2 = (4,7)
+
+    p3 = (4,5)
+    p4 = (3,7)
+
+    p5 = (4,1)
+    p6 = (3,3)
+
+    p7 = (3,1)
+    p8 = (3,10)
+
+    p9 =  (0,6)
+    p10 = (5,6)
+
+    p11 = (472.0, 116.0)
+    p12 = (542.0, 116.0)
+
+    assert None != calculateIntersectPoint(p1, p2, p3, p4), "line 1 line 2 should intersect"
+    assert None != calculateIntersectPoint(p3, p4, p1, p2), "line 2 line 1 should intersect"
+    assert None == calculateIntersectPoint(p1, p2, p5, p6), "line 1 line 3 shouldn't intersect"
+    assert None == calculateIntersectPoint(p3, p4, p5, p6), "line 2 line 3 shouldn't intersect"
+    assert None != calculateIntersectPoint(p1, p2, p7, p8), "line 1 line 4 should intersect"
+    assert None != calculateIntersectPoint(p7, p8, p1, p2), "line 4 line 1 should intersect"
+    assert None != calculateIntersectPoint(p1, p2, p9, p10), "line 1 line 5 should intersect"
+    assert None != calculateIntersectPoint(p9, p10, p1, p2), "line 5 line 1 should intersect"
+    assert None != calculateIntersectPoint(p7, p8, p9, p10), "line 4 line 5 should intersect"
+    assert None != calculateIntersectPoint(p9, p10, p7, p8), "line 5 line 4 should intersect"
+
+    print "\nSUCCESS! All asserts passed for doLinesIntersect"

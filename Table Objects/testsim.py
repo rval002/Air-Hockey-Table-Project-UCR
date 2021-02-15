@@ -45,7 +45,7 @@ def mousemov():
     if mpos == puck.position:
         puck.bounce1()
 
-puck.addSpeed(7,0)
+puck.addSpeed(-1,0)
 
 
 
@@ -57,19 +57,17 @@ while True:
                 sys.exit
 
             #puck.bounce1()
-        puck.ulastPosition()
+
         striker.StrikerEyes()
         #draw
-        puck.ulastPosition()
+
         win.fill(GREY)
         border.draw(win)
         puck.draw(win)
         striker.draw(win)
+        puck.addSpeed(0,0)
 
-        kf.predict()
-        z = np.array(puck.test)
 
-        kf.update(z)
 
 
         puck.updatedrawpos()
@@ -83,4 +81,4 @@ while True:
 
         #updates
         pygame.display.update()
-        clock.tick(30)
+        clock.tick(10)

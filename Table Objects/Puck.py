@@ -28,7 +28,7 @@ class Puck(object):
         self.x = x
         self.y = y
         self.position = Vector2(x,y)
-        self.lastposition = Vector2(x,y-5)
+        self.lastposition = Vector2(x,y)
         self.velocity = Vector2(0,0)
         self.radius = PUCK_RADIUS
         self.trajectory =Vector2(0,0)
@@ -46,14 +46,14 @@ class Puck(object):
 
 
     def ulastPosition(self):
-        self.lastposition = self.position
+        self.lastposition = self.position - self.velocity
         return self.lastposition
 
     def addSpeed(self,x,y):
         self.velocity += Vector2(x,y)
 
     def findAngle(self):
-        pos = self.lastposition
+        pos = self.ulastPosition()
         sX = self.position[0]
         sY = self.position[1]
         try:
@@ -76,12 +76,13 @@ class Puck(object):
 
     def getTrajectory(self):
 
-        angle = self.findAngle()
-        if angle == None:
-            return Vector2(0,0)
-        vec = Vector2( ( math.cos(angle)) ,( math.sin(angle)))
-        nver = vec.normalize()
-        self.trajectory = vec *50
+        #angle = self.findAngle()
+        #if angle == None:
+            #return Vector2(0,0)
+        #vec = Vector2( ( math.cos(angle)) ,( math.sin(angle)))
+        vec = self.velocity
+        nvec = vec.normalize()
+        self.trajectory = nvec *25
         return self.trajectory
 
 
@@ -112,6 +113,9 @@ class Puck(object):
     def writetoscreen(self, win):
         font = pygame.font.SysFont(None,25)
         msg = str(self.findAngle())
+        msg2 = str(self.getTrajectory())
         color = (255,255,255)
         screen_text = font.render(msg,True,color)
+        screen_text1 = font.render(msg2,True,color)
         win.blit(screen_text,[100,100])
+        win.blit(screen_text1,[200,200])

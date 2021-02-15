@@ -17,7 +17,7 @@ import pygame
 from Constants import*
 #from Line_detect import*
 
-class Striker():
+class Striker(object):
     def __init__(self,x,y):
         self.x = x
         self.y = y
