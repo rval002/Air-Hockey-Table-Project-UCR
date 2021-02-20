@@ -15,7 +15,7 @@
 from pygame.math import Vector2
 import pygame
 from Constants import*
-#from Line_detect import*
+from linex import*
 
 class Striker(object):
     def __init__(self,x,y):

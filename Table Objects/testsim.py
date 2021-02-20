@@ -16,7 +16,7 @@ import time , sys
 from pygame.math import Vector2
 import pygame
 from Constants import*
-#from Line_detect import*
+from linex import*
 from Puck import*
 from Border import*
 from Striker import*
@@ -30,7 +30,7 @@ pygame.display.set_caption('plip plop')
 
 
 #setup
-border = Border(0,0)
+border = Border(1,1)
 puck = Puck(250,100)
 striker = Striker(1000,500)
 win = pygame.display.set_mode((FACE_LENGTH,FACE_WIDTH))
@@ -45,7 +45,7 @@ def mousemov():
     if mpos == puck.position:
         puck.bounce1()
 
-puck.addSpeed(-1,0)
+puck.addSpeed(8,4)
 
 
 
@@ -63,15 +63,18 @@ while True:
 
         win.fill(GREY)
         border.draw(win)
+        puck.drawTL(win,border)
         puck.draw(win)
+        puck.drawStrikercorr(win, striker)
         striker.draw(win)
-        puck.addSpeed(0,0)
+        puck.addSpeed(0,1)
 
 
 
 
         puck.updatedrawpos()
         puck.writetoscreen(win)
+        puck.bounceb(border)
 
 
 

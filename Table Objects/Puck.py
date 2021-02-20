@@ -20,7 +20,7 @@ import pygame
 from Constants import*
 from Border import*
 
-#from Line_detect import*
+from linex import*
 
 
 class Puck(object):
@@ -32,7 +32,7 @@ class Puck(object):
         self.velocity = Vector2(0,0)
         self.radius = PUCK_RADIUS
         self.trajectory =Vector2(0,0)
-        self.test = np.array([x,y,x,y])
+        self.PathLine1 = [(0,0),(0,0),(0,0),(0,0)]
 
     def updateSpeed(self):
         self.velocity = Vector2(x,y)
@@ -87,14 +87,93 @@ class Puck(object):
 
 
 
-    def bounceB(self,Border):
+    def borderdetect(self,Border):
+        #Creates lines that are used for intersection
+        radilinespp = [(int(self.position[0]),int(self.position[1])),(int(self.position[0]+self.radius),int(self.position[1]+self.radius))]
+        radilinesmm = [(self.position[0],self.position[1]),(self.position[0]-self.radius,self.position[1]-self.radius)]
+        radilinespm = [(self.position[0],self.position[1]),(self.position[0]+self.radius,self.position[1]-self.radius)]
+        radilinesmp = [(self.position[0],self.position[1]),(self.position[0]-self.radius,self.position[1]+self.radius)]
 
-        pass
+        radilines = [radilinespp, radilinesmm, radilinespm, radilinesmp]
+        borderlines =[Border.leftborder,Border.topborder,Border.rightborder,Border.bottomborder]
+        x1 = Border.topborder[0]
+        x2 = Border.topborder[1]
+        y1 = Border.topborder[2]
+        y2 = Border.topborder[3]
+
+        bord = [(x1,y1),(x2,y2)]
+
+
+        for i in range(4):
+            for j in range(4):
+
+
+
+                corr = segment_intersect([(borderlines[j][0],borderlines[j][1]),(borderlines[j][2],borderlines[j][3])],radilines[i])
+
+
+
+
+                if(corr == None):
+                    None
+
+                else:
+                    return corr,(i, j)
+
+        return corr,(None,None)
+
+
+
+    def bounceb(self, Border):
+        #j decides which border we are using
+
+        corr,pos = self.borderdetect(Border)
+
+        if not(corr == None):
+            #leftborder
+            if pos[1] ==  0 or 2:
+                self.velocity[1] = self.velocity[1] *-1
+            #topborder
+            if pos[1] ==  1 or 3:
+                self.velocity[0] = self.velocity[0] *-1
+
+
+
+
 
     def bounce1(self):
         traj = self.getTrajectory()
         sarray = np.sign(np.array([traj[0],traj[1]]))
         result = Vector2(sarray[0]*self.velocity[0],sarray[1]*self.velocity[1])
+
+
+    def coordinate(self,Border):
+        borderlines =[Border.leftborder,Border.topborder,Border.rightborder,Border.bottomborder]
+        testo = self.getTrajectory() * 1000
+        longline = [(self.position[0],self.position[1]),(self.position[0]+testo[0],self.position[1]+testo[1])]
+
+        for j in range(4):
+            corr = segment_intersect([(borderlines[j][0],borderlines[j][1]),(borderlines[j][2],borderlines[j][3])],longline)
+
+            if(corr == None):
+                None
+
+            else:
+                self.PathLine1 = [self.position, corr]
+                return corr
+
+        return corr
+
+
+
+    def strikercorr(self,Striker):
+        corr = segment_intersect(Striker.centerxline,self.PathLine1)
+        print(corr)
+        if (corr == None):
+            return self.position
+
+        return corr
+
 
 
 
@@ -109,6 +188,14 @@ class Puck(object):
 
         pygame.draw.circle(win, PUCK_COLOR, (self.x,self.y), self.radius)
         pygame.draw.line(win, PUCK_TRAJECTORY_COLOR, self.position, self.position+ self.getTrajectory())
+
+
+    def drawTL(self, win,Border):
+
+        pygame.draw.line(win, PUCK_PATH_COLOR, self.position, self.coordinate(Border))
+
+    def drawStrikercorr(self,win,Striker):
+        pygame.draw.circle(win, PUCK_TRAJECTORY_COLOR,self.strikercorr(Striker), 4)
 
     def writetoscreen(self, win):
         font = pygame.font.SysFont(None,25)
