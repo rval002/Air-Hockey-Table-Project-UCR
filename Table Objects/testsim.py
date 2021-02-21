@@ -45,7 +45,7 @@ def mousemov():
     if mpos == puck.position:
         puck.bounce1()
 
-puck.addSpeed(0,7)
+puck.addSpeed(1,4)
 
 
 
@@ -67,7 +67,7 @@ while True:
         puck.draw(win)
         puck.drawStrikercorr(win, striker)
         striker.draw(win)
-        puck.addSpeed(-1,0)
+        puck.addSpeed(0,1)
 
 
 

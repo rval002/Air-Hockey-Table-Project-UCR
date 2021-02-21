@@ -28,9 +28,10 @@ STRIKER_POSITION = (20,191)
 
 # ------------- DIMENSIONS -------------
 #  dimensions units
-FACE_LENGTH= 1200 # 5ft 4 inches (GOAL TO GOAL)
+FACE_LENGTH= 800 # 5ft 4 inches (GOAL TO GOAL)
+ScreenWidth = 1200
 ScreenWidth = 610
-FACE_WIDTH = 130 # 32 1/2 inches
+FACE_WIDTH = 200 # 32 1/2 inches
 GOAL_CENTER = 0 #goal to edge is 12 inches
 GOAL_SIZE = 0 #goal diamter is 8 inches
 
