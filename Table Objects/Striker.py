@@ -40,7 +40,7 @@ class Striker(object):
         radius_diff= STRIKER_RADIUS+PUCK_RADIUS
 
         self.centerxline = [(BORDER_POSITION[0],self.y),(BORDER_POSITION[0] + FACE_LENGTH,self.y)]
-        self.centeryline = [(self.x,BORDER_POSITION[1]),(self.x,BORDER_POSITION[1] + FACE_WIDTH)]
+        self.centeryline = [(self.x,BORDER_POSITION[1]),(self.x+1,BORDER_POSITION[1] + FACE_WIDTH)]
 
         self.xTline = [(BORDER_POSITION[0],self.y-radius_diff),(BORDER_POSITION[0] + FACE_LENGTH,self.y-radius_diff)]
         self.xBlinet = [(BORDER_POSITION[0],self.y+radius_diff),(BORDER_POSITION[0] + FACE_LENGTH,self.y+radius_diff)]

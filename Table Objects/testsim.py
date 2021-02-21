@@ -6,7 +6,7 @@
 
 #This Code is Created for UCR's EE175 Senior Design Project
 
-# This Code contains The test file to test table objects.
+# This Code contains The test file to test table objects. Visually
 
 #For Pygame Documentation please see:
 #https://www.pygame.org/docs/index.html
@@ -30,7 +30,7 @@ pygame.display.set_caption('plip plop')
 
 
 #setup
-border = Border(1,1)
+border = Border(0,0)
 puck = Puck(250,100)
 striker = Striker(1000,500)
 win = pygame.display.set_mode((FACE_LENGTH,FACE_WIDTH))
@@ -45,7 +45,7 @@ def mousemov():
     if mpos == puck.position:
         puck.bounce1()
 
-puck.addSpeed(8,4)
+puck.addSpeed(0,0)
 
 
 
@@ -67,7 +67,7 @@ while True:
         puck.draw(win)
         puck.drawStrikercorr(win, striker)
         striker.draw(win)
-        puck.addSpeed(0,1)
+        puck.addSpeed(0,0)
 
 
 

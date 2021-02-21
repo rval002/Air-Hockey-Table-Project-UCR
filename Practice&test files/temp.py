@@ -4,15 +4,8 @@ import numpy as np
 
 
 
-number1=[1,1,1,1]
-number2=[2,(2,2),2,2]
+pos = Vector2(50,50)
+prevpos = Vector2(45,45)
 
-number3=[3,3,3,3]
-number4=[4,4,4,4]
-
-number = [number1, number2,number3,number4]
-
-
-
-
-print(number[1][1])
+out = pos - prevpos
+print(out)

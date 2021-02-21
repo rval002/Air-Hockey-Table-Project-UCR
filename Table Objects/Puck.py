@@ -34,8 +34,12 @@ class Puck(object):
         self.trajectory =Vector2(0,0)
         self.PathLine1 = [(0,0),(0,0),(0,0),(0,0)]
 
+    def declareVelocity(self,velocity):
+        self.velocity = velocity
+        
+
     def updateSpeed(self):
-        self.velocity = Vector2(x,y)
+        self.velocity = (Vector2(x,y))
         return self.velocity
 
 
@@ -81,8 +85,12 @@ class Puck(object):
             #return Vector2(0,0)
         #vec = Vector2( ( math.cos(angle)) ,( math.sin(angle)))
         vec = self.velocity
-        nvec = vec.normalize()
-        self.trajectory = nvec *25
+        try:
+            nvec = vec.normalize()
+            self.trajectory = nvec *25
+        except:
+            self.trajectory = vec
+
         return self.trajectory
 
 
@@ -156,7 +164,7 @@ class Puck(object):
             corr = segment_intersect([(borderlines[j][0],borderlines[j][1]),(borderlines[j][2],borderlines[j][3])],longline)
 
             if(corr == None):
-                None
+                corr= self.position
 
             else:
                 self.PathLine1 = [self.position, corr]
@@ -167,8 +175,8 @@ class Puck(object):
 
 
     def strikercorr(self,Striker):
-        corr = segment_intersect(Striker.centerxline,self.PathLine1)
-        print(corr)
+        corr = segment_intersect(Striker.centeryline,self.PathLine1)
+
         if (corr == None):
             return self.position
 
@@ -191,8 +199,8 @@ class Puck(object):
 
 
     def drawTL(self, win,Border):
-
-        pygame.draw.line(win, PUCK_PATH_COLOR, self.position, self.coordinate(Border))
+        print(self.coordinate(Border))
+        pygame.draw.line(win, PUCK_PATH_COLOR, self.position+[1,1], self.coordinate(Border))
 
     def drawStrikercorr(self,win,Striker):
         pygame.draw.circle(win, PUCK_TRAJECTORY_COLOR,self.strikercorr(Striker), 4)
