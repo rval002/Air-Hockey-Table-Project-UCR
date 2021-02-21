@@ -36,7 +36,7 @@ class Puck(object):
 
     def declareVelocity(self,velocity):
         self.velocity = velocity
-        
+
 
     def updateSpeed(self):
         self.velocity = (Vector2(x,y))
@@ -157,17 +157,20 @@ class Puck(object):
 
     def coordinate(self,Border):
         borderlines =[Border.leftborder,Border.topborder,Border.rightborder,Border.bottomborder]
-        testo = self.getTrajectory() * 1000
+        testo = self.getTrajectory() * 10
         longline = [(self.position[0],self.position[1]),(self.position[0]+testo[0],self.position[1]+testo[1])]
 
         for j in range(4):
             corr = segment_intersect([(borderlines[j][0],borderlines[j][1]),(borderlines[j][2],borderlines[j][3])],longline)
 
             if(corr == None):
-                corr= self.position
+                corr = self.position
 
             else:
-                self.PathLine1 = [self.position, corr]
+                if not((BORDER_POSITION[1]<= corr[1]) or (corr[1] <= (BORDER_POSITION[1] + FACE_WIDTH[1]) )):
+                    pass
+                else:
+                    self.PathLine1 = [self.position, corr]
                 return corr
 
         return corr
@@ -179,6 +182,9 @@ class Puck(object):
 
         if (corr == None):
             return self.position
+        #elif ((BORDER_POSITION[1]<= corr[1]) or (corr[1] <= (BORDER_POSITION[1] + FACE_WIDTH[1]) )):
+            #return self.position
+
 
         return corr
 

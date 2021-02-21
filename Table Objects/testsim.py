@@ -30,10 +30,10 @@ pygame.display.set_caption('plip plop')
 
 
 #setup
-border = Border(0,0)
-puck = Puck(250,100)
-striker = Striker(1000,500)
-win = pygame.display.set_mode((FACE_LENGTH,FACE_WIDTH))
+border = Border(BORDER_POSITION[0],BORDER_POSITION[1])
+puck = Puck(STRIKER_POSITION[0]+50,STRIKER_POSITION[1]+10)
+striker = Striker(STRIKER_POSITION[0],STRIKER_POSITION[1])
+win = pygame.display.set_mode((FACE_LENGTH,ScreenWidth))
 pygame.display.set_caption('plip plop')
 
 
@@ -45,7 +45,7 @@ def mousemov():
     if mpos == puck.position:
         puck.bounce1()
 
-puck.addSpeed(0,0)
+puck.addSpeed(0,7)
 
 
 
@@ -67,7 +67,7 @@ while True:
         puck.draw(win)
         puck.drawStrikercorr(win, striker)
         striker.draw(win)
-        puck.addSpeed(0,0)
+        puck.addSpeed(-1,0)
 
 
 

@@ -33,6 +33,12 @@ class Striker(object):
         self.yLline1 = [(0,0),(0,0)]
         self.yRline1 = [(0,0),(0,0)]
 
+    def updatePosition(self,postion):
+        self.postion = Vector2(postion)
+
+    def getPostion(self):
+        return self.postion
+
 
     def StrikerEyes(self):
 

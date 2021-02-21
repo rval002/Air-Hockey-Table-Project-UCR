@@ -20,22 +20,27 @@ from linex import*
 from Puck import*
 from Border import*
 from Striker import*
-from Filtertest import*
+#from Filtertest import*
 
 
 class Prediction(object):
-    def __init__(self,x,y,bx,by):
-        self.border = Border(bx,by)
-        self.puck=Puck(0,0)
+    def __init__(self,Stikerpos,BorderPos):
+        self.border = Border(BorderPos)
+        self.puck = Puck(0,0)
         self.striker = Striker(x,y)
-        self.StrikerEyes()
+        self.striker.StrikerEyes()
 
-    def getPuckVelocity(self,prePos,pos)
-        pos = Vector2(Pos)
-        prepos = Vecotr2(prePos)
-        return(pos-prePos)
 
-    def getPredictionLine(self,prePos,Pos):
-        puck.declareVelocity = getPuckVelocity(prePos,pos)
-        puck.coordinate(self.border)
-        pass
+    def getPredictionLine(self,currentpos,strikerpos,velocity):
+        self.striker = self.getStrikerPosition()
+        self.striker.StrikerEyes()
+        self.puck.updatePosition(currentpos[0],currentpos[1])
+        self.puck.declareVelocity = velocity
+        coordinate = puck.coordinate(self.border)
+        return self.puck.PathLine1
+
+
+    def getNewStrikerPos(self):
+        newstriker = puck.strikercorr(self.striker)
+        self.strker.updatePosition(newstriker)
+        return newstriker
