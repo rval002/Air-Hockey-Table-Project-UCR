@@ -90,7 +90,7 @@ class Puck(object):
             self.trajectory = nvec *25
         except:
             self.trajectory = vec
-
+        # print("traject = ", self.trajectory)
         return self.trajectory
 
 
@@ -140,6 +140,8 @@ class Puck(object):
         if not(corr == None):
             #leftborder
             if pos[1] ==  0 or 2:
+                print("a")
+                print(self.velocity[1])
                 self.velocity[1] = self.velocity[1] *-1
             #topborder
             if pos[1] ==  1 or 3:
@@ -157,18 +159,21 @@ class Puck(object):
 
     def coordinate(self,Border):
         borderlines =[Border.leftborder,Border.topborder,Border.rightborder,Border.bottomborder]
-        testo = self.getTrajectory() * 5
+        testo = Vector2( self.getTrajectory() )* 1000
+        # print("testo ", testo)
         longline = [(self.position[0],self.position[1]),(self.position[0]+testo[0],self.position[1]+testo[1])]
-
+        # print("longlin= ",longline)
+        
         for j in range(4):
             corr = segment_intersect([(borderlines[j][0],borderlines[j][1]),(borderlines[j][2],borderlines[j][3])],longline)
-            print(corr)
+            # print(corr)
             if(corr == None):
                 corr = self.position
 
             else:
 
                 self.PathLine1 = [self.position, corr]
+                
                 return corr
 
         return corr

@@ -25,20 +25,20 @@ from Striker import*
 
 class Prediction(object):
     def __init__(self,Stikerpos,BorderPos):
-        self.border = Border(BorderPos)
+        self.border = Border(BorderPos[0],BorderPos[1])
         self.puck = Puck(0,0)
-        self.striker = Striker(x,y)
-        self.striker.StrikerEyes()
+        self.striker = Striker(Stikerpos[0],Stikerpos[1])
+       
 
 
     def getPredictionLine(self,currentpos,strikerpos,velocity):
-        self.striker = self.getStrikerPosition()
-        self.striker.StrikerEyes()
+        self.striker = strikerpos
+        # self.striker.StrikerEyes()
         self.puck.updatePosition(currentpos[0],currentpos[1])
-        self.puck.declareVelocity = velocity
-        coordinate = puck.coordinate(self.border)
-        return self.puck.PathLine1
-
+        self.puck.declareVelocity =Vector2(velocity)
+        coordinate = self.puck.coordinate(self.border)
+        return coordinate
+    
 
     def getNewStrikerPos(self):
         newstriker = puck.strikercorr(self.striker)

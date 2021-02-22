@@ -34,5 +34,5 @@ class Border(object):
 
         self.points = [(x,y),(x+self.length,y),(x+self.length,y+self.width),(x,y+self.width)]
 
-    def draw(self, win):
-        pygame.draw.lines(win, self.color, True, self.points)
+    # def draw(self, win):
+    #     pygame.draw.lines(win, self.color, True, self.points)

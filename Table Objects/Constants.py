@@ -19,19 +19,19 @@
 FRAMERATE = 0 # Might be put in with the camera section.
 
 # ------------- START POSITIONS-------------
-BORDER_POSITION = (16,131)
+BORDER_POSITION = (20,150)
 PUCK_POSITION = (0,0)
-STRIKER_POSITION = (20,191)
+STRIKER_POSITION = (50,220)
 
 
 
 
 # ------------- DIMENSIONS -------------
 #  dimensions units
-FACE_LENGTH= 800 # 5ft 4 inches (GOAL TO GOAL)
-ScreenWidth = 1200
-ScreenWidth = 610
-FACE_WIDTH = 200 # 32 1/2 inches
+FACE_LENGTH= 600 # 5ft 4 inches (GOAL TO GOAL)
+# ScreenWidth = 1200
+# ScreenWidth = 610
+FACE_WIDTH = 175 # 32 1/2 inches
 GOAL_CENTER = 0 #goal to edge is 12 inches
 GOAL_SIZE = 0 #goal diamter is 8 inches
 
