@@ -117,7 +117,7 @@ class Puck(object):
 
 
 
-                corr = segment_intersect([(borderlines[j][0],borderlines[j][1]),(borderlines[j][2],borderlines[j][3])],radilines[i])
+                corr = calculateIntersectPoint((borderlines[j][0],borderlines[j][1]),(borderlines[j][2],borderlines[j][3]),(radilines[i][0]),(radilines[i][1]))
 
 
 
@@ -141,7 +141,7 @@ class Puck(object):
             #leftborder
             if pos[1] ==  0 or 2:
                 print("a")
-                print(self.velocity[1])
+                #print(self.velocity[1])
                 self.velocity[1] = self.velocity[1] *-1
             #topborder
             if pos[1] ==  1 or 3:
@@ -163,9 +163,9 @@ class Puck(object):
         # print("testo ", testo)
         longline = [(self.position[0],self.position[1]),(self.position[0]+testo[0],self.position[1]+testo[1])]
         # print("longlin= ",longline)
-        
+
         for j in range(4):
-            corr = segment_intersect([(borderlines[j][0],borderlines[j][1]),(borderlines[j][2],borderlines[j][3])],longline)
+            corr = calculateIntersectPoint((borderlines[j][0],borderlines[j][1]),(borderlines[j][2],borderlines[j][3]),(longline[0]),(longline[1]))
             # print(corr)
             if(corr == None):
                 corr = self.position
@@ -173,7 +173,7 @@ class Puck(object):
             else:
 
                 self.PathLine1 = [self.position, corr]
-                
+
                 return corr
 
         return corr
@@ -181,7 +181,7 @@ class Puck(object):
 
 
     def strikercorr(self,Striker):
-        corr = segment_intersect(Striker.centeryline,self.PathLine1)
+        corr = calculateIntersectPoint((Striker.centeryline[0]),(Striker.centeryline[1]),(self.PathLine1[0]),(self.PathLine1[1]))
 
         if (corr == None):
             return self.position
@@ -208,7 +208,7 @@ class Puck(object):
 
 
     def drawTL(self, win,Border):
-        print(self.coordinate(Border))
+        #print(self.coordinate(Border))
         pygame.draw.line(win, PUCK_PATH_COLOR, self.position+[1,1], self.coordinate(Border))
 
     def drawStrikercorr(self,win,Striker):

@@ -27,6 +27,7 @@ from Filtertest import*
 pygame.init()
 clock = pygame.time.Clock()
 pygame.display.set_caption('plip plop')
+ScreenWidth = 800
 
 
 #setup
@@ -45,7 +46,7 @@ def mousemov():
     if mpos == puck.position:
         puck.bounce1()
 
-puck.addSpeed(1,4)
+puck.addSpeed(-8,0)
 
 
 
@@ -67,7 +68,7 @@ while True:
         puck.draw(win)
         puck.drawStrikercorr(win, striker)
         striker.draw(win)
-        puck.addSpeed(0,1)
+        puck.addSpeed(1,1)
 
 
 
