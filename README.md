@@ -7,5 +7,4 @@ Under Construction
 
 Gif of Simulation in Pygames, show cases striker response and timing.
 
-[![IMAGE ALT TEXT]((https://img.youtube.com/vi/WSGSXqh4a6k/0.jpg)](https://www.youtube.com/watch?v=WSGSXqh4a6k&feature=youtu.be "B.O.R.K. Air Hockey Robot")
-
+[![Everything Is AWESOME](http://i.imgur.com/Ot5DWAW.png)](https://youtu.be/StTqXEQ2l-Y?t=35s "Everything Is AWESOME")
