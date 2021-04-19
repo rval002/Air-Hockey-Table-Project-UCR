@@ -27,9 +27,9 @@ class Border(object):
         self.color = (55,55,55)
 
         # [startx , starty , endx, endy]          # start pont (0 , 0)
-        self.leftborder = [x-1,y, x,y+self.width]  #end point ( 0,width)
-        self.topborder = [x-1,y,x+self.length,y]    #end point ( length,0)
-        self.rightborder = [x+self.length+1,y,x+self.length,y+self.width]
+        self.leftborder = [x,y, x,y+self.width]  #end point ( 0,width)
+        self.topborder = [x,y,x+self.length,y]    #end point ( length,0)
+        self.rightborder = [x+self.length,y,x+self.length,y+self.width]
         self.bottomborder = [x,y+self.width,x+self.length,y+self.width] # (length ,width)
 
         self.points = [(x,y),(x+self.length,y),(x+self.length,y+self.width),(x,y+self.width)]

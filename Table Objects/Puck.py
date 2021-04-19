@@ -28,18 +28,23 @@ class Puck(object):
         self.x = x
         self.y = y
         self.position = Vector2(x,y)
+
         self.lastposition = Vector2(x,y)
         self.velocity = Vector2(0,0)
         self.radius = PUCK_RADIUS
         self.trajectory =Vector2(0,0)
+        self.Rect = pygame.Rect((x-PUCK_RADIUS,y+PUCK_RADIUS),(2*PUCK_RADIUS,2*PUCK_RADIUS))
         self.PathLine1 = [(0,0),(0,0),(0,0),(0,0)]
+
 
     def declareVelocity(self,velocity):
         self.velocity = velocity
 
 
+
     def updateSpeed(self):
         self.velocity = (Vector2(x,y))
+        self.Rect.move(x,y)
         return self.velocity
 
 
@@ -143,6 +148,7 @@ class Puck(object):
                 print("a")
                 #print(self.velocity[1])
                 self.velocity[1] = self.velocity[1] *-1
+
             #topborder
             if pos[1] ==  1 or 3:
                 self.velocity[0] = self.velocity[0] *-1
@@ -151,10 +157,16 @@ class Puck(object):
 
 
 
-    def bounce1(self):
+
+    def bounce1(self,mrel):
         traj = self.getTrajectory()
-        sarray = np.sign(np.array([traj[0],traj[1]]))
-        result = Vector2(sarray[0]*self.velocity[0],sarray[1]*self.velocity[1])
+        self.addSpeed(mrel[0], mrel[1])
+
+    def bounceS(self):
+        traj = self.getTrajectory()
+        mrel = self.velocity
+        self.velocity= Vector2(mrel[0]* -1 +4 ,-1* mrel[1]+2)
+
 
 
     def coordinate(self,Border):
@@ -199,6 +211,8 @@ class Puck(object):
         self.position += self.velocity
         self.x += self.velocity[0]
         self.y += self.velocity[1]
+        self.Rect.update((self.position[0],self.position[1]),(2*PUCK_RADIUS,2*PUCK_RADIUS))
+
 
 
     def draw(self, win):
