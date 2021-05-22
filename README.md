@@ -1,5 +1,5 @@
-# Air-Hockey-Table-Project-UCR !!!! Page is Currently Under Construction !!!!
-Air Hockey Table Project for UCR Senior Design 2021
+# Air-Hockey-Table-Robot-UCR !!!! Page is Currently Under Construction !!!!
+Air Hockey Robot Project for UCR Senior Design 2021
 Documentaion will be available Sometime in June 2021
 
 Project In Python with dependencies; OpenCv, NumPy, Pygames.
